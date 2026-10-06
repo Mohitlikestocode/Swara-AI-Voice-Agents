@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowRight, Sparkles, Copy, Check, ExternalLink } from "lucide-react";
 import { Logo } from "@/components/Swara/Logo";
 
-const API = process.env.REACT_APP_BACKEND_URL || "http://localhost:8001";
+const API = process.env.REACT_APP_BACKEND_URL ?? (process.env.NODE_ENV === "production" ? "" : "http://localhost:8001");
 const WIDGET_HOST = window.location.origin;
 
 const BUSINESS_TYPES = [

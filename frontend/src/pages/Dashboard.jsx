@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Plus, MessageSquare, Settings, LogOut } from "lucide-react";
 import { Logo } from "@/components/Swara/Logo";
 
-const API = process.env.REACT_APP_BACKEND_URL || "http://localhost:8001";
+const API = process.env.REACT_APP_BACKEND_URL ?? (process.env.NODE_ENV === "production" ? "" : "http://localhost:8001");
 
 export default function Dashboard() {
   const navigate = useNavigate();

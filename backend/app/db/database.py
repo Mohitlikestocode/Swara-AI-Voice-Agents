@@ -6,12 +6,21 @@ import sqlite3
 import os
 from pathlib import Path
 
-DB_PATH = Path(__file__).resolve().parent.parent.parent / "swara.db"
+_SEED_DB = Path(__file__).resolve().parent.parent.parent / "swara.db"
+
+# Vercel's filesystem is read-only except /tmp, so copy the seed DB there.
+if os.environ.get("VERCEL"):
+    import shutil
+    import tempfile
+    DB_PATH = Path(tempfile.gettempdir()) / "swara.db"
+    if not DB_PATH.exists() and _SEED_DB.exists():
+        shutil.copy(_SEED_DB, DB_PATH)
+else:
+    DB_PATH = _SEED_DB
 
 def _get_conn():
     conn = sqlite3.connect(str(DB_PATH))
     conn.row_factory = sqlite3.Row
-    conn.execute("PRAGMA journal_mode=WAL")
     return conn
 
 def init_db():

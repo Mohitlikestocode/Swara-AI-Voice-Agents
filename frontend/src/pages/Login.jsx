@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Logo } from "@/components/Swara/Logo";
 
-const API = process.env.REACT_APP_BACKEND_URL || "http://localhost:8001";
+const API = process.env.REACT_APP_BACKEND_URL ?? (process.env.NODE_ENV === "production" ? "" : "http://localhost:8001");
 
 export default function Login() {
   const navigate = useNavigate();

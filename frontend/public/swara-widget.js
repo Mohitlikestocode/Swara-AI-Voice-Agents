@@ -5,7 +5,7 @@
 (function () {
   const script = document.currentScript;
   const agentId = script.getAttribute("data-agent");
-  const host = script.getAttribute("data-host") || "http://localhost:3000";
+  const host = script.getAttribute("data-host") || new URL(script.src).origin;
 
   if (!agentId) {
     console.error("Swara Widget: Missing data-agent attribute.");
