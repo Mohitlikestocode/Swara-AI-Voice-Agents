@@ -61,6 +61,7 @@ export const VoiceDemo = ({
     };
     run();
     return () => timers.current.forEach(clearTimeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

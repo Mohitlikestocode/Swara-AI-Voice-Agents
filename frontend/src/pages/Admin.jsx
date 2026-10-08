@@ -34,10 +34,12 @@ export default function Admin() {
 
   useEffect(() => {
     fetchAgent();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [agentId]);
 
   useEffect(() => {
     fetchReservations();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [agentId, filterDate]);
 
   const cancelReservation = async (resId) => {
